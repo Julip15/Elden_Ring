@@ -2,10 +2,12 @@
 Group: 49
 Name: Ethan Spear, Kia Wilson 
 OSUOID: speare,  wilsokia
-OSUOID: speare,  wilsokia
 Course: CS340 Section 400
 Assignment: Elden Ring Project: Step 2 Draft
 */
+
+SET FOREIGN_KEY_CHECKS=0;
+SET AUTOCOMMIT = 0;
 
 CREATE TABLE Weapon_Categories (
     category_id varchar(255) UNIQUE NOT NULL, 
@@ -21,7 +23,7 @@ VALUES
     ('Curved Greatsword');
 
 
-CREATE TABLE Weapons(
+CREATE OR REPLACE TABLE Weapons(
     weapon_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     damage int NOT NULL,
@@ -55,23 +57,30 @@ VALUES
     'Bloodhound''s Fang',
     141,
     (SELECT category_id FROM Weapon_Categories WHERE Weapon_Categories.category_id = 'Curved Greatsword')
+),
+(
+    'Lazuli Glintstone Sword',
+    79,
+    (SELECT category_id FROM Weapon_Categories WHERE Weapon_Categories.category_id = 'Straight Sword')
 );
 
 
-CREATE TABLE Regions (
+CREATE OR REPLACE TABLE Regions (
     region_id varchar(45) UNIQUE NOT NULL,
     PRIMARY KEY (region_id) 
 );
 
 INSERT INTO Regions (region_id)
 VALUES
-    ('Limegrave'),
+    ('Limgrave'),
     ('Caelid'),
     ('Miquella''s Haligree'),
+    ('Liurnia of the Lakes'),
     ('Weeping Peninsula');
 
 
-CREATE TABLE Locations(
+
+CREATE OR REPLACE TABLE Locations(
     location_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     region_id varchar(45),
@@ -91,19 +100,27 @@ VALUES
 ),
 (   
     'Stormhill',
-    (SELECT region_id FROM Regions Where region_id = 'Limegrave')
+    (SELECT region_id FROM Regions Where region_id = 'Limgrave')
 ),
 (
-    ' Forlorn Hound Evergaol',
-    (SELECT region_id FROM Regions Where region_id = 'Limegrave')
+    'Forlorn Hound Evergaol',
+    (SELECT region_id FROM Regions Where region_id = 'Limgrave')
 ),
 (
     'Elphael, Brace of the Haligree',
     (SELECT region_id FROM Regions Where region_id = 'Miquella''s Haligree')
+),
+(
+    'Raya Lucaria Academy',
+    (SELECT region_id FROM Regions Where region_id = 'Liurnia of the Lakes')
+),
+(
+    'Coastal Cave',
+    (SELECT region_id FROM Regions Where region_id = 'Limgrave')
 );
 
 
-CREATE TABLE Players(
+CREATE OR REPLACE TABLE Players(
     player_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     class varchar(55) NOT NULL,
@@ -133,7 +150,7 @@ VALUES
     'Player2',
     'Bandit',
     112,
-    NULL,
+    19,
     (SELECT location_id FROM Locations WHERE Locations.name = 'Aeonia Swamp')
 ),
 (
@@ -145,7 +162,7 @@ VALUES
 );
 
 
-Create TABLE Enemies (
+Create OR REPLACE TABLE Enemies (
     enemy_id int AUTO_INCREMENT UNIQUE NOT NULL, 
     name varchar(45) NOT NULL,
     health int,
@@ -174,15 +191,22 @@ VALUES
     (SELECT location_id FROM Locations WHERE Locations.name = 'Aeonia Swamp')
 ),
 (
-    'Commander O''Neil',
-    9210,
-    1,
-    (SELECT weapon_id FROM Weapons WHERE Weapons.name = 'Uchigatana'),
-    (SELECT location_id FROM Locations WHERE Locations.name = 'Limegrave')
+    'Lazuli Sorcerer',
+    NULL,
+    0,
+    (SELECT weapon_id FROM Weapons WHERE Weapons.name = 'Lazuli Glintstone Sword'),
+    (SELECT location_id FROM Locations WHERE Locations.name = 'Raya Lucaria Academy')
+),
+(
+    'Demi-Human',
+    NULL,
+    0,
+    (SELECT weapon_id FROM Weapons WHERE Weapons.name = 'Great Knife'),
+    (SELECT location_id FROM Locations WHERE Locations.name = 'Coastal Cave')
 );
 
 
-CREATE TABLE Player_Weapons(
+CREATE OR REPLACE TABLE Player_Weapons(
     weapon_id int,
     player_id int,
     FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id),
@@ -216,3 +240,5 @@ VALUES
     (SELECT weapon_id FROM Weapons WHERE name = 'Longsword')
 );
 
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
