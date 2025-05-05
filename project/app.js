@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const PORT = PORT;
+const PORT = 55766;
 
 // Database
 const db = require('./database/db-connector');
@@ -32,20 +32,21 @@ app.get('/', async function (req, res) {
     }
 });
 
-app.get('/bsg-people', async function (req, res) {
+app.get('/Players', async function (req, res) {
     try {
         // Create and execute our queries
         // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query1 = `SELECT bsg_people.id, bsg_people.fname, bsg_people.lname, \
-            bsg_planets.name AS 'homeworld', bsg_people.age FROM bsg_people \
-            LEFT JOIN bsg_planets ON bsg_people.homeworld = bsg_planets.id;`;
-        const query2 = 'SELECT * FROM bsg_planets;';
-        const [people] = await db.query(query1);
-        const [homeworlds] = await db.query(query2);
+        const query1 = `SELECT Players.player_id, Players.name, Players.class,
+            Players.level, Players.death_count, Locations.name AS 'location' FROM Players
+            JOIN Locations ON Players.location_id = Locations.location_id;`;
+        const query2 = 'SELECT * FROM Locations;';
+        const [players] = await db.query(query1);
+        const [locations] = await db.query(query2);
+        //const [homeworlds] = await db.query(query2);
 
         // Render the bsg-people.hbs file, and also send the renderer
         //  an object that contains our bsg_people and bsg_homeworld information
-        res.render('bsg-people', { people: people, homeworlds: homeworlds });
+        res.render('Players', { players: players, locations: locations});
     } catch (error) {
         console.error('Error executing queries:', error);
         // Send a generic error message to the browser

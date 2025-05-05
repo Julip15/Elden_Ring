@@ -1,0 +1,104 @@
+<h1>Players</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each players.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each players}}
+        <tr>
+            <td>{{this.player_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.class}}</td>
+            <td>{{this.level}}</td>
+            <td>{{this.death_count}}</td>
+            <td>{{this.location}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_person_form'>
+                <input type='hidden' name='delete_player_id' value='{{this.player_id}}' />
+                <input type='hidden' name='delete_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create a Player</h2>
+<form class='cuForm' id='create_player_form'>
+    <label for='create_player_name'>Name: </label>
+    <input type='text' name='create_player_name' id='create_player_name' required />
+
+    <label for='create_player_class'>Class: </label>
+    <input type='text' name='create_player_class' id='create_player_class' />
+
+    <label for='create_player_level'>Level: </label>
+    <input type='number' name='create_player_level' id='create_player_level' />
+
+    <label for='create_player_deaths'>death_count: </label>
+    <input type='number' name='create_player_deaths' id='create_player_deaths' />    
+
+    <label for='create_person_location'>Location: </label>
+    <select name='create_person_location' id='create_person_location'>
+        <option value='NULL' selected>Select a Location</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each locations}}
+        <option value='{{this.location_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Player</h2>
+<form class='cuForm' id='update_person_form'>
+    <label for='update_player_id'>Player to Update: </label>
+    <select name='update_player_id' id='update_player_id' required>
+        <option value='' disabled selected>Select a Player</option>
+        {{#each players}}
+        <option value='{{this.player_id}}' required>
+            {{this.player_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_player_location'>Location: </label>
+    <select name='update_player_location' id='update_player_location'>
+        <option value='NULL' disabled selected>Select a Location</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each locations}}
+        <option value='{{this.location_id}}' required>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_player_level'>Level: </label>
+    <input type='number' name='update_player_level' id='update_player_level' min='0' />
+
+    <label for='update_player_deaths'>Deaths: </label>
+    <input type='number' name='update_player_deaths' id='update_player_deaths' min='0' />
+
+    <input type='submit' />
+</form>
