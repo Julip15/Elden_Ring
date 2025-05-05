@@ -56,6 +56,33 @@ app.get('/Players', async function (req, res) {
     }
 });
 
+app.get('/Player_Weapons', async function (req, res) {
+    try {
+        // Create and execute our queries
+        // In query1, we use a JOIN clause to display the names of the homeworlds
+        const query1 = `SELECT Players.name AS 'player', Weapons.name AS 'weapon'
+                        FROM Player_Weapons
+                        JOIN Players On Players.player_id = Player_Weapons.player_id
+                        JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id;`;
+        const query2 = 'SELECT * FROM Players;';
+        const query3 = 'SELECT * FROM Weapons;';
+        const [inventory] = await db.query(query1);
+        const [players] = await db.query(query2);
+        const [weapons] = await db.query(query3);
+        //const [homeworlds] = await db.query(query2);
+
+        // Render the bsg-people.hbs file, and also send the renderer
+        //  an object that contains our bsg_people and bsg_homeworld information
+        res.render('Player_Weapons', { inventory: inventory, players: players, weapons: weapons});
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 // ########################################
 // ########## LISTENER
 
