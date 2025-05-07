@@ -6,14 +6,10 @@
         {{! For the table header row, we print the DB attribute names }}
         <tr>
             {{#each categories.[0]}}
-            <th>
-                {{@key}}
-            </th>
+            <th>{{@key}}</th>
             {{/each}}
-            <th></th>
         </tr>
     </thead>
-
     <tbody>
         {{! For each row, print the id, fname, lname, homeworld and age }}
         {{#each categories}}
