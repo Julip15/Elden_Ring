@@ -1,0 +1,57 @@
+<h1>Weapons</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            {{#each weapons.[0]}} <!-- Iterate over the first location to get keys -->
+                <th>
+                    {{@key}} <!-- Display the key (column name) -->
+                </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each weapons}}
+        <tr>
+            <td>{{this.weapon_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.damage}}</td>
+            <td>{{this.category_name}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_location_form'>
+                <input type='hidden' name='delete_weapon_id' value='{{this.location_id}}' />
+                <input type='hidden' name='delete_weapon_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Create a Weapon</h2>
+<form class='cuForm' id='create_weapon_form'>
+    <label for='create_weapon_name'> Name: </label>
+    <input type='text' name='create_weapon_name' id='create_weapon_name' required />
+
+    <label for='create_weapon_damage'>Damage: </label>
+    <input type='number' name='damage' max='947' id='damage' required/>
+
+    <label for='create_weapon_category_id'>Category: </label>
+    <select name='create_weapon_category_id' id='create_weapon_category_id' required>
+        <option value='' selected>Select a Category</option>
+        {{#each weapon_categories}}
+        <option value='{{this.category_id}}'>{{this.category_id}}</option>
+        {{/each}}
+    </select>
+
+
+    <input type='submit' />
+</form>

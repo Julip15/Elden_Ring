@@ -1,0 +1,57 @@
+<h1>Locations</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            {{#each locations.[0]}} 
+                <th>
+                    {{@key}} 
+                </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each locations}}
+        <tr>
+            <td>{{this.location_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.region_id}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_location_form'>
+                <input type='hidden' name='delete_location_id' value='{{this.location_id}}' />
+                <input type='hidden' name='delete_location_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Insert a Location</h2>
+<form class='cuForm' id='insert_location_form'>
+    <label for='insert_location_name'> Name: </label>
+    <input type='text' name='insert_location_name' id='insert_location_name' required />
+
+    <label for='insert_location_region'>Region: </label>
+    <select name='insert_location_region' id='insert_location_region' required>
+        <option value='' disabled selected>Select a Region</option>
+        {{#each regions}}
+            <option value='{{this.region_id}}'>{{this.region_id}}</option>
+        {{/each}}
+    </select>
+
+    <input type='submit' />
+</form>
+
+
+
+
