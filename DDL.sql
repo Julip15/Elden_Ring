@@ -125,7 +125,7 @@ CREATE OR REPLACE TABLE Players(
     name varchar(255) NOT NULL,
     class varchar(55) NOT NULL,
     level int NOT NULL,
-    death_count int,
+    death_count int DEFAULT 0,
     location_id int,
     FOREIGN KEY (location_id) REFERENCES Locations(location_id),
     PRIMARY KEY (player_id)
@@ -143,7 +143,7 @@ VALUES
     'Player1',
     "Samurai",
     32,
-    NULL,
+    0,
     (SELECT location_id FROM Locations WHERE Locations.name = 'Redmane Castle')
 ),
 (
@@ -157,7 +157,7 @@ VALUES
     'Player3',
     'Vagabond',
     9,
-    NULL,
+    0,
     (SELECT location_id FROM Locations WHERE Locations.name = 'Stormhill')
 );
 
@@ -207,7 +207,7 @@ VALUES
 
 
 CREATE OR REPLACE TABLE Player_Weapons(
-    player_weapon_id
+    player_weapon_id int AUTO_INCREMENT UNIQUE,
     weapon_id int,
     player_id int,
     FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id) ON DELETE CASCADE,
