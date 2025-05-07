@@ -9,12 +9,15 @@ Assignment: Elden Ring Project: Step 2 Draft
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
+
+-- Weapons category table
 CREATE TABLE Weapon_Categories (
     category_id varchar(255) UNIQUE NOT NULL, 
     PRIMARY KEY (category_id)
 );
 
 
+-- Add weapon categories
 INSERT INTO Weapon_Categories (category_id)
 VALUES 
     ('Katana'), 
@@ -22,7 +25,7 @@ VALUES
     ('Dagger'), 
     ('Curved Greatsword');
 
-
+-- Weapons table
 CREATE OR REPLACE TABLE Weapons(
     weapon_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
@@ -32,6 +35,7 @@ CREATE OR REPLACE TABLE Weapons(
     PRIMARY KEY (weapon_id)
 );
 
+-- Add weapons
 INSERT INTO Weapons(
     name,
     damage,
@@ -65,11 +69,13 @@ VALUES
 );
 
 
+-- Regions table 
 CREATE OR REPLACE TABLE Regions (
     region_id varchar(45) UNIQUE NOT NULL,
     PRIMARY KEY (region_id) 
 );
 
+-- Add regions
 INSERT INTO Regions (region_id)
 VALUES
     ('Limgrave'),
@@ -79,7 +85,7 @@ VALUES
     ('Weeping Peninsula');
 
 
-
+-- Locations table
 CREATE OR REPLACE TABLE Locations(
     location_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
@@ -88,6 +94,7 @@ CREATE OR REPLACE TABLE Locations(
     PRIMARY KEY (location_id)
 );
 
+-- Add locations
 INSERT INTO Locations (name, region_id)
 VALUES 
 (
@@ -120,6 +127,7 @@ VALUES
 );
 
 
+-- Players table
 CREATE OR REPLACE TABLE Players(
     player_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
@@ -131,6 +139,7 @@ CREATE OR REPLACE TABLE Players(
     PRIMARY KEY (player_id)
 );
 
+-- Add players
 INSERT INTO Players(
     name,
     class, 
@@ -162,6 +171,7 @@ VALUES
 );
 
 
+-- Enemies table
 Create OR REPLACE TABLE Enemies (
     enemy_id int AUTO_INCREMENT UNIQUE NOT NULL, 
     name varchar(45) NOT NULL,
@@ -173,7 +183,8 @@ Create OR REPLACE TABLE Enemies (
     FOREIGN KEY (location_id) REFERENCES Locations(location_id),
     PRIMARY KEY  (enemy_id)
 );
-    
+
+-- Add enemies  
 INSERT INTO Enemies (name, health, is_boss, weapon_id, location_id)
 VALUES 
 (
@@ -206,6 +217,7 @@ VALUES
 );
 
 
+-- Player weapons table
 CREATE OR REPLACE TABLE Player_Weapons(
     player_weapon_id
     weapon_id int,
@@ -215,6 +227,7 @@ CREATE OR REPLACE TABLE Player_Weapons(
     PRIMARY KEY (player_weapon_id)
 );
 
+-- Query's to insert information to player weapons
 INSERT INTO Player_Weapons(
     player_id,
     weapon_id
