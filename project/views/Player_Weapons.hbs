@@ -1,0 +1,105 @@
+<h1>Players</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each inventory.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each inventory}}
+        <tr>
+            <td>{{this.player}}</td>
+            <td>{{this.weapon}}</td>
+
+
+            {{! DELETE form }}
+            <form id='delete_person_form'>
+                <input type='hidden' name='delete_player_id' value='{{this.player_id}}' />
+                <input type='hidden' name='delete_player' value='{{this.player}}' />
+                <input type='hidden' name='delete_weapon_id' value='{{this.weapon_id}}' />
+                <input type='hidden' name='delete_weapon' value='{{this.weapon}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create a Inventory Item</h2>
+<form class='cuForm' id='create_player_weapon_form'>
+
+        <label for='create_player'>Player: </label>
+    <select name='create_player' id='create_player'>
+        <option value='NULL' selected>Select a Player</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each players}}
+        <option value='{{this.player_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>    
+
+    <label for='create_weapon'>Weapon: </label>
+    <select name='create_weapon' id='create_weapon'>
+        <option value='NULL' selected>Select a Weapon</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each weapons}}
+        <option value='{{this.weapon_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update an Inventory Item</h2>
+<form class='cuForm' id='update_player_weapon_form'>
+    <label for='update_player_weapon'>Inventory Item to Update: </label>
+    <select name='update_player_weapon' id='update_player_weapon' required>
+        <option value='' disabled selected>Select a Player_weapon</option>
+        {{#each inventory}}
+        <option value='{{this.player_weapon_id}}' required>
+            {{this.player}}
+            -
+            {{this.weapon}}
+        </option>
+        {{/each}}
+    </select>
+
+        <label for='create_player'>Player: </label>
+    <select name='create_player' id='create_player'>
+        <option value='NULL' selected>Select a Player</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each players}}
+        <option value='{{this.player_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    </select>
+
+    <label for='create_weapon'>Weapon: </label>
+    <select name='create_weapon' id='create_weapon'>
+        <option value='NULL' selected>Select a Weapon</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each weapons}}
+        <option value='{{this.weapon_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+
+    <input type='submit' />
+</form>
