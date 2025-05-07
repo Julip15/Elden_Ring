@@ -17,7 +17,7 @@ CREATE TABLE Weapon_Categories (
 );
 
 
--- Add weapon categories
+-- Add weapon categories   
 INSERT INTO Weapon_Categories (category_id)
 VALUES 
     ('Katana'), 
