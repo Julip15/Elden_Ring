@@ -1,0 +1,74 @@
+<h1>Enemies</h1>
+
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each enemies.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the id, name, health, boss status, weapon id, location id }}
+        {{#each enemies}}
+        <tr>
+            <td>{{this.enemy_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.health}}</td>
+            <td>{{this.is_boss}}</td>
+            <td>{{this.weapon_id}}</td>
+            <td>{{this.location_id}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_enemy_form'>
+                <input type='hidden' name='delete_enemy_id' value='{{this.enemy_id}}' />
+                <input type='hidden' name='delete_enemy_name' value='{{this.name}}' />
+
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Create an Enemy</h2>
+<form class='cuForm' id='create_enemy_form'>
+    <label for='create_enemy_name'>Enemy Name: </label>
+    <input type='text' name='create_enemy_name' id='create_enemy_name' required />
+
+    <label for='create_enemy_health'>Health: </label>
+    <input type='number' name='health' min='0' max='89,613' />
+
+    <label for='create_enemy_is_boss'>Is Boss: </label>
+    <select name'is_boss' id='is_boss' required>
+        <option value='0'>No</option>
+        <option value='1'>Yes</option>
+    </select>
+
+    <label for='weapon_id'>Weapon: </label>
+    <select name='create_enemy_weapon_id' id='create_enemy_weapon_id' required>
+        <option value='NULL' selected>Select a Weapon</option>
+        {{#each weapons}}
+        <option value='{{this.weapon_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for='create_enemy_location_id'>Location: </label>
+    <select name='create_enemy_location_id' id='create_enemy_location_id' required>
+        <option value='NULL' selected>Select a Location</option>
+        {{#each locations}}
+        <option value='{{this.location_id}}'>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <input type='submit' />
+</form>
