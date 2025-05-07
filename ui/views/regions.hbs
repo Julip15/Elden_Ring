@@ -1,0 +1,21 @@
+<h1>Regions</h1>
+
+{{! READ table }}
+<table>
+  <thead>
+    <tr>
+      {{#each regions.[0]}}
+        <th>{{@key}}</th>
+      {{/each}}      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each regions}}
+    <tr>
+      <td>{{this.region_id}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
