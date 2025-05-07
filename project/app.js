@@ -2,13 +2,15 @@
 // ########## SETUP
 
 // Express
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const PORT = 55766;
+const PORT = process.env.PORT;
 
 // Database
 const db = require('./database/db-connector');
@@ -60,7 +62,7 @@ app.get('/Player_Weapons', async function (req, res) {
     try {
         // Create and execute our queries
         // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query1 = `SELECT Players.name AS 'player', Weapons.name AS 'weapon'
+        const query1 = `SELECT Players.name AS 'player', Weapons.name AS 'weapon', player_weapon_id
                         FROM Player_Weapons
                         JOIN Players On Players.player_id = Player_Weapons.player_id
                         JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id;`;

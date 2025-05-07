@@ -207,11 +207,12 @@ VALUES
 
 
 CREATE OR REPLACE TABLE Player_Weapons(
+    player_weapon_id
     weapon_id int,
     player_id int,
-    FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id),
-    FOREIGN KEY (player_id) REFERENCES Players(player_id),
-    PRIMARY KEY (player_id, weapon_id)
+    FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id) ON DELETE CASCADE,
+    FOREIGN KEY (player_id) REFERENCES Players(player_id) ON DELETE CASCADE,
+    PRIMARY KEY (player_weapon_id)
 );
 
 INSERT INTO Player_Weapons(

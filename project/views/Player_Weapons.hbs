@@ -25,7 +25,9 @@
             {{! DELETE form }}
             <form id='delete_person_form'>
                 <input type='hidden' name='delete_player_id' value='{{this.player_id}}' />
-                <input type='hidden' name='delete_name' value='{{this.name}}' />
+                <input type='hidden' name='delete_player' value='{{this.player}}' />
+                <input type='hidden' name='delete_weapon_id' value='{{this.weapon_id}}' />
+                <input type='hidden' name='delete_weapon' value='{{this.weapon}}' />
                 <td>
                     <button type='submit'>
                         Delete
@@ -38,26 +40,24 @@
 </table>
 
 {{! CREATE form }}
-<h2>Create a Player</h2>
-<form class='cuForm' id='create_player_form'>
-    <label for='create_player_name'>Name: </label>
-    <input type='text' name='create_player_name' id='create_player_name' required />
+<h2>Create a Inventory Item</h2>
+<form class='cuForm' id='create_player_weapon_form'>
 
-    <label for='create_player_class'>Class: </label>
-    <input type='text' name='create_player_class' id='create_player_class' />
-
-    <label for='create_player_level'>Level: </label>
-    <input type='number' name='create_player_level' id='create_player_level' />
-
-    <label for='create_player_deaths'>death_count: </label>
-    <input type='number' name='create_player_deaths' id='create_player_deaths' />    
-
-    <label for='create_person_location'>Location: </label>
-    <select name='create_person_location' id='create_person_location'>
-        <option value='NULL' selected>Select a Location</option>
+        <label for='create_player'>Player: </label>
+    <select name='create_player' id='create_player'>
+        <option value='NULL' selected>Select a Player</option>
         <option value='NULL'>&lt; None &gt;</option>
-        {{#each locations}}
-        <option value='{{this.location_id}}' required>{{this.name}}</option>
+        {{#each players}}
+        <option value='{{this.player_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>    
+
+    <label for='create_weapon'>Weapon: </label>
+    <select name='create_weapon' id='create_weapon'>
+        <option value='NULL' selected>Select a Weapon</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each weapons}}
+        <option value='{{this.weapon_id}}' required>{{this.name}}</option>
         {{/each}}
     </select>
 
@@ -66,36 +66,40 @@
 </form>
 
 {{! UPDATE form }}
-<h2>Update a Player</h2>
-<form class='cuForm' id='update_person_form'>
-    <label for='update_player_id'>Player to Update: </label>
-    <select name='update_player_id' id='update_player_id' required>
-        <option value='' disabled selected>Select a Player</option>
-        {{#each players}}
-        <option value='{{this.player_id}}' required>
-            {{this.player_id}}
+<h2>Update an Inventory Item</h2>
+<form class='cuForm' id='update_player_weapon_form'>
+    <label for='update_player_weapon'>Inventory Item to Update: </label>
+    <select name='update_player_weapon' id='update_player_weapon' required>
+        <option value='' disabled selected>Select a Player_weapon</option>
+        {{#each inventory}}
+        <option value='{{this.player_weapon_id}}' required>
+            {{this.player}}
             -
-            {{this.name}}
+            {{this.weapon}}
         </option>
         {{/each}}
     </select>
 
-    <label for='update_player_location'>Location: </label>
-    <select name='update_player_location' id='update_player_location'>
-        <option value='NULL' disabled selected>Select a Location</option>
+        <label for='create_player'>Player: </label>
+    <select name='create_player' id='create_player'>
+        <option value='NULL' selected>Select a Player</option>
         <option value='NULL'>&lt; None &gt;</option>
-        {{#each locations}}
-        <option value='{{this.location_id}}' required>
-            {{this.name}}
-        </option>
+        {{#each players}}
+        <option value='{{this.player_id}}' required>{{this.name}}</option>
         {{/each}}
     </select>
 
-    <label for='update_player_level'>Level: </label>
-    <input type='number' name='update_player_level' id='update_player_level' min='0' />
+    </select>
 
-    <label for='update_player_deaths'>Deaths: </label>
-    <input type='number' name='update_player_deaths' id='update_player_deaths' min='0' />
+    <label for='create_weapon'>Weapon: </label>
+    <select name='create_weapon' id='create_weapon'>
+        <option value='NULL' selected>Select a Weapon</option>
+        <option value='NULL'>&lt; None &gt;</option>
+        {{#each weapons}}
+        <option value='{{this.weapon_id}}' required>{{this.name}}</option>
+        {{/each}}
+    </select>
+
 
     <input type='submit' />
 </form>
