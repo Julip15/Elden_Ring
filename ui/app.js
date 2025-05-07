@@ -34,7 +34,7 @@ app.get('/', async function (req, res) {
 
 
 //Route handler for locations
-app.get('/locations', async (req, res) => {
+app.get('/locations', async function (req, res) {
     try {
         const [locations] = await db.query('SELECT * FROM Locations');
         const [regions] = await db.query('SELECT region_id FROM Regions'); 
