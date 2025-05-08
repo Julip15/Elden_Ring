@@ -94,8 +94,5 @@ INSERT INTO Enemies(name, health, is_boss, weapon_id, location_id)
 VALUES(:nameInput, :healthInput, :is_bossInput, :weapon_id_from_dropdown_Input, :location_id_from_dropdown_Input);
 
 -- add a new location
-<<<<<<< HEAD
 INSERT INTO Locations(name, region_id) VALUES(:nameInput, :region_id_from_dropdown_Input);
-=======
-INSERT INTO Locations(name, region_id) VALUES(:nameInput, :region_id_from_dropdown_Input);
->>>>>>> 8397d7344be20e8cd78b72ffbec668739e49895b
+

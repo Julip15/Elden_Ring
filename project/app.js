@@ -123,7 +123,7 @@ app.get('/enemies', async function (req, res) {
     try {
         const query1 = `
             SELECT Enemies.enemy_id, Enemies.name, IFNULL(Enemies.health, 'N/A') AS health, Enemies.is_boss,
-                   Enemies.weapon_id AS weapon_id, Enemies.location_id
+            Weapons.name as 'weapon', Locations.name as 'location'
             FROM Enemies
             LEFT JOIN Weapons ON Enemies.weapon_id = Weapons.weapon_id
             LEFT JOIN Locations ON Enemies.location_id = Locations.location_id;
