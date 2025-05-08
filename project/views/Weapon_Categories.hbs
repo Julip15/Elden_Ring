@@ -1,0 +1,21 @@
+<h1>Weapon Categories</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each categories.[0]}}
+            <th>{{@key}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{#each categories}}
+        <tr>
+            <td>{{this.category_id}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
