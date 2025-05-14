@@ -18,17 +18,17 @@
         {{! For each row, print the id, fname, lname, homeworld and age }}
         {{#each players}}
         <tr>
-            <td>{{this.player_id}}</td>
-            <td>{{this.name}}</td>
-            <td>{{this.class}}</td>
-            <td>{{this.level}}</td>
-            <td>{{this.death_count}}</td>
-            <td>{{this.location}}</td>
+            <td>{{this.[Player ID]}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Class}}</td>
+            <td>{{this.Level}}</td>
+            <td>{{this.[Death Count]}}</td>
+            <td>{{this.Location}}</td>
 
             {{! DELETE form }}
             <form id='delete_person_form'>
-                <input type='hidden' name='delete_player_id' value='{{this.player_id}}' />
-                <input type='hidden' name='delete_name' value='{{this.name}}' />
+                <input type='hidden' name='delete_player_id' value='{{this.[Player ID]}}' />
+                <input type='hidden' name='delete_name' value='{{this.Name}}' />
                 <td>
                     <button type='submit'>
                         Delete
@@ -52,7 +52,7 @@
     <label for='create_player_level'>Level: </label>
     <input type='number' name='create_player_level' id='create_player_level' />
 
-    <label for='create_player_deaths'>death_count: </label>
+    <label for='create_player_deaths'>Death Count: </label>
     <input type='number' name='create_player_deaths' id='create_player_deaths' />    
 
     <label for='create_person_location'>Location: </label>
@@ -75,10 +75,10 @@
     <select name='update_player_id' id='update_player_id' required>
         <option value='' disabled selected>Select a Player</option>
         {{#each players}}
-        <option value='{{this.player_id}}' required>
-            {{this.player_id}}
+        <option value='{{this.[Player ID]}}' required>
+            {{this.[Player ID]}}
             -
-            {{this.name}}
+            {{this.Name}}
         </option>
         {{/each}}
     </select>
