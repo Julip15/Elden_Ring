@@ -1,4 +1,4 @@
-<h1>Players</h1>
+<h1>Inventory</h1>
 
 {{! READ table }}
 <table>
@@ -18,8 +18,9 @@
         {{! For each row, print the id, fname, lname, homeworld and age }}
         {{#each inventory}}
         <tr>
-            <td>{{this.player}}</td>
-            <td>{{this.weapon}}</td>
+            <td>{{this.[Inventory ID]}}</td>
+            <td>{{this.Player}}</td>
+            <td>{{this.Weapon}}</td>
 
 
             {{! DELETE form }}
@@ -70,12 +71,10 @@
 <form class='cuForm' id='update_player_weapon_form'>
     <label for='update_player_weapon'>Inventory Item to Update: </label>
     <select name='update_player_weapon' id='update_player_weapon' required>
-        <option value='' disabled selected>Select a Player_weapon</option>
+        <option value='' disabled selected>Select an Inventory Item</option>
         {{#each inventory}}
-        <option value='{{this.player_weapon_id}}' required>
-            {{this.player}}
-            -
-            {{this.weapon}}
+        <option value='{{this.[Inventory ID]}}' required>
+            {{this.[Inventory ID]}}
         </option>
         {{/each}}
     </select>
