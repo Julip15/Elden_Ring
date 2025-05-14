@@ -38,8 +38,8 @@ app.get('/Players', async function (req, res) {
     try {
         // Create and execute our queries
         // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query1 = `SELECT Players.player_id, Players.name, Players.class,
-            Players.level, Players.death_count, Locations.name AS 'location' FROM Players
+        const query1 = `SELECT Players.player_id AS 'Player ID', Players.name AS 'Name', Players.class AS 'Class',
+            Players.level AS 'Level', Players.death_count AS 'Death Count', Locations.name AS 'Location' FROM Players
             JOIN Locations ON Players.location_id = Locations.location_id;`;
         const query2 = 'SELECT * FROM Locations;';
         const [players] = await db.query(query1);
@@ -62,7 +62,7 @@ app.get('/Player_Weapons', async function (req, res) {
     try {
         // Create and execute our queries
         // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query1 = `SELECT Players.name AS 'player', Weapons.name AS 'weapon', player_weapon_id
+        const query1 = `SELECT  player_weapon_id AS 'Inventory ID', Players.name AS 'Player', Weapons.name AS 'Weapon'
                         FROM Player_Weapons
                         JOIN Players On Players.player_id = Player_Weapons.player_id
                         JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id;`;
@@ -88,7 +88,7 @@ app.get('/Player_Weapons', async function (req, res) {
 app.get('/Weapon_Categories', async function (req, res) {
     try {
 
-        const query1 = `SELECT category_id
+        const query1 = `SELECT category_id AS 'Category'
                         FROM Weapon_Categories;`;
 
         const [categories] = await db.query(query1);
@@ -106,10 +106,8 @@ app.get('/Weapon_Categories', async function (req, res) {
 //Route handler for locations
 app.get('/locations', async function (req, res) {
     try {
-        const [locations] = await db.query('SELECT * FROM Locations');
-        const [regions] = await db.query('SELECT region_id FROM Regions'); 
-
-        console.log('Regions:', regions);  
+        const [locations] = await db.query(`SELECT location_id AS 'Location ID', name AS 'Name', region_id AS 'Region' FROM Locations;`);
+        const [regions] = await db.query(`SELECT region_id FROM Regions;`); 
 
         res.render('locations', { locations, regions });
     } catch (error) {
@@ -122,11 +120,16 @@ app.get('/locations', async function (req, res) {
 app.get('/enemies', async function (req, res) {
     try {
         const query1 = `
-            SELECT Enemies.enemy_id, Enemies.name, IFNULL(Enemies.health, 'N/A') AS health, Enemies.is_boss,
-                   Enemies.weapon_id AS weapon_id, Enemies.location_id
+            SELECT Enemies.enemy_id AS 'Enemy ID', Enemies.name AS 'Name', IFNULL(Enemies.health, 'N/A') AS Health,             
+            CASE
+                WHEN Enemies.is_boss = 1 THEN 'YES'
+                WHEN Enemies.is_boss = 0 THEN 'NO'
+            END AS 'Is Boss',
+            Weapons.name as 'Weapon', Locations.name as 'Location'
             FROM Enemies
             LEFT JOIN Weapons ON Enemies.weapon_id = Weapons.weapon_id
             LEFT JOIN Locations ON Enemies.location_id = Locations.location_id;
+
         `;
         const query2 = `SELECT * FROM Weapons;`;
         const query3 = `SELECT * FROM Locations;`;
@@ -154,7 +157,7 @@ app.get('/enemies', async function (req, res) {
 app.get('/weapons', async function (req, res) {
     try {
         const query1 = `
-            SELECT Weapons.weapon_id, Weapons.name, Weapons.damage, Weapon_Categories.category_id AS category_name
+            SELECT Weapons.weapon_id AS 'Weapon ID', Weapons.name AS 'Name', Weapons.damage AS 'Damage', Weapon_Categories.category_id AS 'Category'
             FROM Weapons
             LEFT JOIN Weapon_Categories ON Weapons.category_id = Weapon_Categories.category_id;
         `;
@@ -174,7 +177,7 @@ app.get('/weapons', async function (req, res) {
 app.get('/regions', async function (req, res) {
     try {
         const query = `
-            SELECT region_id FROM Regions;
+            SELECT region_id AS 'Region' FROM Regions;
         `;
         
         const [regions] = await db.query(query);
