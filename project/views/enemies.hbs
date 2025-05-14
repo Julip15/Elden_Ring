@@ -17,12 +17,12 @@
         {{! For each row, print the id, name, health, boss status, weapon id, location id }}
         {{#each enemies}}
         <tr>
-            <td>{{this.enemy_id}}</td>
-            <td>{{this.name}}</td>
-            <td>{{this.health}}</td>
-            <td>{{this.is_boss}}</td>
-            <td>{{this.weapon}}</td>
-            <td>{{this.location}}</td>
+            <td>{{this.[Enemy ID]}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Health}}</td>
+            <td>{{this.[Is Boss]}}</td>
+            <td>{{this.Weapon}}</td>
+            <td>{{this.Location}}</td>
 
             {{! DELETE form }}
             <form id='delete_enemy_form'>
