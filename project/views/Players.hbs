@@ -26,7 +26,14 @@
             <td>{{this.Location}}</td>
 
             {{! DELETE form }}
-            <form id='delete_person_form'>
+            {{!
+            # Citation for the following function:
+            # Date: 05/20/2025
+            # Copied from /OR/ Adapted from /OR/ Based on: Microsoft Copilot
+            # Source URL: https://copilot.microsoft.com
+            # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
+            }}
+            <form id="delete_person_form_{{this.[Player ID]}}" method="POST" action="/Players/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                 <input type='hidden' name='delete_player_id' value='{{this.[Player ID]}}' />
                 <input type='hidden' name='delete_name' value='{{this.Name}}' />
                 <td>
