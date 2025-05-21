@@ -191,6 +191,7 @@ app.get('/regions', async function (req, res) {
     }
 });
 
+// Route handler for Home Reload
 app.post('/home/reload', async function(req, res){
     try {
         const reloaddb = `CALL sp_load_eldenringdb();`;
@@ -204,6 +205,26 @@ app.post('/home/reload', async function(req, res){
         }
 });
 
+/*
+      # Citation for the following function:
+2      # Date: 05/20/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for delete player
+app.post('/Players/delete', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const playerId = req.body.delete_player_id;
+        const query = 'CALL DeletePlayer(?);';
+        await db.query(query, [playerId]);
+        res.redirect('/Players');
+    } catch (error) {
+        console.error("Error deleting player:", error);
+        res.status(500).send("Failed to delete player.");
+    }
+});
 
 
 
