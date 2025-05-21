@@ -5,8 +5,6 @@
 4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006390
 */
 
-
-
 DROP PROCEDURE IF EXISTS DeletePlayer;
 
 DELIMITER//
