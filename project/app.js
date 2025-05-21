@@ -51,7 +51,7 @@ app.get('/', async function (req, res) {
 app.get('/Players', async function (req, res) {
     try {
         // Create and execute our queries
-        // In query1, we use a JOIN clause to display the names of the homeworlds
+        // In query1, select all player attributes and join on Locations for location name display
         const query1 = `SELECT Players.player_id AS 'Player ID', Players.name AS 'Name', Players.class AS 'Class',
             Players.level AS 'Level', Players.death_count AS 'Death Count', Locations.name AS 'Location' FROM Players
             JOIN Locations ON Players.location_id = Locations.location_id;`;
@@ -60,8 +60,7 @@ app.get('/Players', async function (req, res) {
         const [locations] = await db.query(query2);
         //const [homeworlds] = await db.query(query2);
 
-        // Render the bsg-people.hbs file, and also send the renderer
-        //  an object that contains our bsg_people and bsg_homeworld information
+        // Render the Players.hbs file, and also send the renderer
         res.render('Players', { players: players, locations: locations});
     } catch (error) {
         console.error('Error executing queries:', error);
@@ -82,7 +81,8 @@ app.get('/Players', async function (req, res) {
 app.get('/Player_Weapons', async function (req, res) {
     try {
         // Create and execute our queries
-        // In query1, we use a JOIN clause to display the names of the homeworlds
+        // In query1, select the player_weapon_id and join Players and Weapons to display names instead of id.
+        // we are using inventory as the table name for the ui
         const query1 = `SELECT  player_weapon_id AS 'Inventory ID', Players.name AS 'Player', Weapons.name AS 'Weapon'
                         FROM Player_Weapons
                         JOIN Players On Players.player_id = Player_Weapons.player_id
@@ -94,8 +94,7 @@ app.get('/Player_Weapons', async function (req, res) {
         const [weapons] = await db.query(query3);
         //const [homeworlds] = await db.query(query2);
 
-        // Render the bsg-people.hbs file, and also send the renderer
-        //  an object that contains our bsg_people and bsg_homeworld information
+        // Render the Player_Weapons.hbs file, and also send the renderer
         res.render('Player_Weapons', { inventory: inventory, players: players, weapons: weapons});
     } catch (error) {
         console.error('Error executing queries:', error);
@@ -115,12 +114,12 @@ app.get('/Player_Weapons', async function (req, res) {
 // Route Handler for Weapons Categories
 app.get('/Weapon_Categories', async function (req, res) {
     try {
-
+        
         const query1 = `SELECT category_id AS 'Category'
                         FROM Weapon_Categories;`;
 
         const [categories] = await db.query(query1);
-
+        // render the Weapon_Categories page
         res.render('Weapon_Categories', { categories: categories});
     } catch (error) {
         console.error('Error executing queries:', error);
