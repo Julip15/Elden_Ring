@@ -106,8 +106,10 @@ app.get('/Weapon_Categories', async function (req, res) {
 //Route handler for locations
 app.get('/locations', async function (req, res) {
     try {
-        const [locations] = await db.query(`SELECT location_id AS 'Location ID', name AS 'Name', region_id AS 'Region' FROM Locations;`);
-        const [regions] = await db.query(`SELECT region_id FROM Regions;`); 
+        const [locations] = await db.query(`SELECT location_id AS 'Location ID', name AS 'Name', region_id AS 'Region' FROM Locations`);
+        const [regions] = await db.query(`SELECT region_id FROM Regions`); 
+
+        console.log('Regions:', regions);  
 
         res.render('locations', { locations, regions });
     } catch (error) {
@@ -128,7 +130,7 @@ app.get('/enemies', async function (req, res) {
             Weapons.name as 'Weapon', Locations.name as 'Location'
             FROM Enemies
             LEFT JOIN Weapons ON Enemies.weapon_id = Weapons.weapon_id
-            LEFT JOIN Locations ON Enemies.location_id = Locations.location_id;
+            LEFT JOIN Locations ON Enemies.location_id = Locations.location_id
 
         `;
         const query2 = `SELECT * FROM Weapons;`;
@@ -187,6 +189,19 @@ app.get('/regions', async function (req, res) {
     } catch (error) {
         res.status(500).send(`<pre>${error.stack}</pre>`);
     }
+});
+
+app.post('/home/reload', async function(req, res){
+    try {
+        const reloaddb = `CALL sp_load_eldenringdb();`;
+    
+        const [result] = await db.query(reloaddb);
+    
+        res.redirect('/')
+        } catch(error) {
+            console.error('No')
+            res.status(500).send(`<pre>${error.stack}</pre>`);
+        }
 });
 
 
