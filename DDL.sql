@@ -1,16 +1,17 @@
-/*
-Group: 49
-Name: Ethan Spear, Kia Wilson 
-OSUOID: speare,  wilsokia
-Course: CS340 Section 400
-Assignment: Elden Ring Project: Step 2 Draft
-*/
 
-SET FOREIGN_KEY_CHECKS=0;
-SET AUTOCOMMIT = 0;
+/* Stored Procedure for DDL */
+DROP PROCEDURE IF EXISTS sp_load_eldenringdb;
+
+DELIMiTER //
+
+CREATE PROCEDURE sp_load_eldenringdb()
+BEGIN
 
 
--- Weapons category table
+    SET FOREIGN_KEY_CHECKS=0;
+
+DROP TABLE IF EXISTS Weapon_Categories;
+
 CREATE TABLE Weapon_Categories (
     category_id varchar(255) UNIQUE NOT NULL, 
     PRIMARY KEY (category_id)
@@ -25,8 +26,10 @@ VALUES
     ('Dagger'), 
     ('Curved Greatsword');
 
+DROP TABLE IF EXISTS Weapons;
+
 -- Weapons table
-CREATE OR REPLACE TABLE Weapons(
+CREATE TABLE Weapons(
     weapon_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     damage int NOT NULL,
@@ -68,9 +71,10 @@ VALUES
     (SELECT category_id FROM Weapon_Categories WHERE Weapon_Categories.category_id = 'Straight Sword')
 );
 
+DROP TABLE IF EXISTS Regions;
 
 -- Regions table 
-CREATE OR REPLACE TABLE Regions (
+CREATE TABLE Regions (
     region_id varchar(45) UNIQUE NOT NULL,
     PRIMARY KEY (region_id) 
 );
@@ -84,9 +88,10 @@ VALUES
     ('Liurnia of the Lakes'),
     ('Weeping Peninsula');
 
+DROP TABLE IF EXISTS Locations;
 
 -- Locations table
-CREATE OR REPLACE TABLE Locations(
+CREATE TABLE Locations(
     location_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     region_id varchar(45),
@@ -126,9 +131,10 @@ VALUES
     (SELECT region_id FROM Regions Where region_id = 'Limgrave')
 );
 
+DROP TABLE IF EXISTS Players;
 
 -- Players table
-CREATE OR REPLACE TABLE Players(
+CREATE TABLE Players(
     player_id int AUTO_INCREMENT UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     class varchar(55) NOT NULL,
@@ -170,9 +176,10 @@ VALUES
     (SELECT location_id FROM Locations WHERE Locations.name = 'Stormhill')
 );
 
+DROP TABLE IF EXISTS Enemies;
 
 -- Enemies table
-Create OR REPLACE TABLE Enemies (
+Create TABLE Enemies (
     enemy_id int AUTO_INCREMENT UNIQUE NOT NULL, 
     name varchar(45) NOT NULL,
     health int,
@@ -216,9 +223,10 @@ VALUES
     (SELECT location_id FROM Locations WHERE Locations.name = 'Coastal Cave')
 );
 
+DROP TABLE IF EXISTS Player_Weapons;
 
 -- Player weapons table
-CREATE OR REPLACE TABLE Player_Weapons(
+CREATE TABLE Player_Weapons(
     player_weapon_id int AUTO_INCREMENT UNIQUE,
     weapon_id int,
     player_id int,
@@ -254,5 +262,8 @@ VALUES
     (SELECT weapon_id FROM Weapons WHERE name = 'Longsword')
 );
 
-SET FOREIGN_KEY_CHECKS=1;
-COMMIT;
+    SET FOREIGN_KEY_CHECKS=1;
+END //
+
+DELIMITER ;
+
