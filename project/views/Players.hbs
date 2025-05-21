@@ -1,3 +1,12 @@
+{{!  
+# Citation for the following page:
+# Date: 05/20/2025
+# Copied from /OR/ Adapted from /OR/ Based on: Exploration - Web Application Technology
+# Source URL:https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
+
+
+
 <h1>Players</h1>
 
 {{! READ table }}
@@ -15,10 +24,10 @@
     </thead>
 
     <tbody>
-        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{! For each row, print the player_id, name, class, level, death_count, location }}
         {{#each players}}
         <tr>
-            <td>{{this.[Player ID]}}</td>
+            <td>{{this.[Player ID]}}</td> {{! [] For space to show }}
             <td>{{this.Name}}</td>
             <td>{{this.Class}}</td>
             <td>{{this.Level}}</td>
@@ -26,7 +35,14 @@
             <td>{{this.Location}}</td>
 
             {{! DELETE form }}
-            <form id='delete_person_form'>
+            {{!
+            # Citation for the following function:
+            # Date: 05/20/2025
+            # Copied from /OR/ Adapted from /OR/ Based on: Microsoft Copilot
+            # Source URL: https://copilot.microsoft.com
+            # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
+            }}
+            <form id="delete_person_form_{{this.[Player ID]}}" method="POST" action="/Players/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                 <input type='hidden' name='delete_player_id' value='{{this.[Player ID]}}' />
                 <input type='hidden' name='delete_name' value='{{this.Name}}' />
                 <td>

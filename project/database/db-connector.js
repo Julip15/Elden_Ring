@@ -1,3 +1,14 @@
+/*
+# Citation for the following page:
+# Date: 05/20/2025
+# Copied from /OR/ Adapted from /OR/ Based on: Exploration - Web Application Technology, npmjs
+# Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+https://www.npmjs.com/package/dotenv 
+             
+*/
+
+
+
 // Get an instance of mysql we can use in the app
 require('dotenv').config({path: '../.env'});
 let mysql = require('mysql2')

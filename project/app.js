@@ -1,3 +1,10 @@
+/*
+      # Citation for the following page:
+2      # Date: 05/6/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+*/
+
 // ########################################
 // ########## SETUP
 
@@ -34,6 +41,13 @@ app.get('/', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2      # Date: 05/6/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
+*/
 app.get('/Players', async function (req, res) {
     try {
         // Create and execute our queries
@@ -58,6 +72,13 @@ app.get('/Players', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2      # Date: 05/6/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
+*/
 app.get('/Player_Weapons', async function (req, res) {
     try {
         // Create and execute our queries
@@ -84,7 +105,14 @@ app.get('/Player_Weapons', async function (req, res) {
         );
     }
 });
+/*
+      # Citation for the following function:
+2     # Date: 05/6/2025
+3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+*/
 
+// Route Handler for Weapons Categories
 app.get('/Weapon_Categories', async function (req, res) {
     try {
 
@@ -103,6 +131,14 @@ app.get('/Weapon_Categories', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2      # Date: 05/6/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
+*/
+
 //Route handler for locations
 app.get('/locations', async function (req, res) {
     try {
@@ -118,6 +154,13 @@ app.get('/locations', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2      # Date: 05/6/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database , Activity 8 SQL Queries of Multiple JOins 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5      # https://canvas.oregonstate.edu/courses/1999601/pages/activity-8-sql-queries-of-multiple-tables-joins?module_item_id=25352927
+*/
 // Route handler for enemies
 app.get('/enemies', async function (req, res) {
     try {
@@ -154,6 +197,13 @@ app.get('/enemies', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2     # Date: 05/6/2025
+3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5     # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
+*/
 
 // Route handle for Weapons
 app.get('/weapons', async function (req, res) {
@@ -175,6 +225,13 @@ app.get('/weapons', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2     # Date: 05/6/2025
+3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Intro to SQL
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
+5     # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-intro-to-sql?module_item_id=25352908
+*/
 // Route handler for Regions 
 app.get('/regions', async function (req, res) {
     try {
@@ -191,6 +248,13 @@ app.get('/regions', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function:
+2     # Date: 05/20/2025
+3     # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for Home Reload
 app.post('/home/reload', async function(req, res){
     try {
         const reloaddb = `CALL sp_load_eldenringdb();`;
@@ -204,6 +268,26 @@ app.post('/home/reload', async function(req, res){
         }
 });
 
+/*
+      # Citation for the following function:
+2     # Date: 05/20/2025
+3     # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for delete player
+app.post('/Players/delete', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const playerId = req.body.delete_player_id;
+        const query = 'CALL DeletePlayer(?);';
+        await db.query(query, [playerId]);
+        res.redirect('/Players');
+    } catch (error) {
+        console.error("Error deleting player:", error);
+        res.status(500).send("Failed to delete player.");
+    }
+});
 
 
 

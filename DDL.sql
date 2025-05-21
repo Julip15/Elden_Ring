@@ -1,3 +1,12 @@
+/* 
+# Citation for the following page:
+# Date: 05/20/2025
+# Copied from /OR/ Adapted from /OR/ Based on: Exploration: PL/SQL part 1, SP, View and Function
+# Source URL:https://canvas.oregonstate.edu/courses/1999601/pages/exploration-pl-slash-sql-part-1-sp-view-and-function?module_item_id=25352958
+# No AI used.
+*/
+
+
 
 /* Stored Procedure for DDL */
 DROP PROCEDURE IF EXISTS sp_load_eldenringdb;
