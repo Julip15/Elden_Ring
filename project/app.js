@@ -1,10 +1,3 @@
-/*
-      # Citation for the following page:
-2      # Date: 05/6/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-*/
-
 // ########################################
 // ########## SETUP
 
@@ -41,13 +34,6 @@ app.get('/', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2      # Date: 05/6/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
-*/
 app.get('/Players', async function (req, res) {
     try {
         // Create and execute our queries
@@ -72,13 +58,6 @@ app.get('/Players', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2      # Date: 05/6/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
-*/
 app.get('/Player_Weapons', async function (req, res) {
     try {
         // Create and execute our queries
@@ -105,14 +84,7 @@ app.get('/Player_Weapons', async function (req, res) {
         );
     }
 });
-/*
-      # Citation for the following function:
-2     # Date: 05/6/2025
-3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-*/
 
-// Route Handler for Weapons Categories
 app.get('/Weapon_Categories', async function (req, res) {
     try {
 
@@ -131,14 +103,6 @@ app.get('/Weapon_Categories', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2      # Date: 05/6/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins 
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5      # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
-*/
-
 //Route handler for locations
 app.get('/locations', async function (req, res) {
     try {
@@ -154,13 +118,6 @@ app.get('/locations', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2      # Date: 05/6/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database , Activity 8 SQL Queries of Multiple JOins 
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5      # https://canvas.oregonstate.edu/courses/1999601/pages/activity-8-sql-queries-of-multiple-tables-joins?module_item_id=25352927
-*/
 // Route handler for enemies
 app.get('/enemies', async function (req, res) {
     try {
@@ -197,13 +154,6 @@ app.get('/enemies', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2     # Date: 05/6/2025
-3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Exploration SQL Joins
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5     # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-sql-joins?module_item_id=25352923
-*/
 
 // Route handle for Weapons
 app.get('/weapons', async function (req, res) {
@@ -225,13 +175,6 @@ app.get('/weapons', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2     # Date: 05/6/2025
-3     # Copied from /OR/ Adapted from /OR/ Based on: Activity 2 - Connect webapp to database, Intro to SQL
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006370
-5     # https://canvas.oregonstate.edu/courses/1999601/pages/exploration-intro-to-sql?module_item_id=25352908
-*/
 // Route handler for Regions 
 app.get('/regions', async function (req, res) {
     try {
@@ -248,13 +191,6 @@ app.get('/regions', async function (req, res) {
     }
 });
 
-/*
-      # Citation for the following function:
-2     # Date: 05/20/2025
-3     # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
-*/
-// Route handler for Home Reload
 app.post('/home/reload', async function(req, res){
     try {
         const reloaddb = `CALL sp_load_eldenringdb();`;
@@ -270,9 +206,9 @@ app.post('/home/reload', async function(req, res){
 
 /*
       # Citation for the following function:
-2     # Date: 05/20/2025
-3     # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+2      # Date: 05/20/2025
+3      # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
+4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 // Route handler for delete player
 app.post('/Players/delete', async function (req, res) {
@@ -289,8 +225,101 @@ app.post('/Players/delete', async function (req, res) {
     }
 });
 
+app.post('/Players/create', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const name = req.body.create_player_name
+        const class_player = req.body.create_player_class
+        const level = req.body.create_player_level
+        const death_count = req.body.create_player_deaths
+        const location_id = req.body.create_person_location
+        const query = 'CALL sp_insert_player(?, ?, ?, ?, ?);';
+        await db.query(query, [name, class_player, level, death_count, location_id]);
+        res.redirect('/Players');
+    } catch (error) {
+        console.error("Error ", error);
+        res.status(500).send("Failed");
+    }
+});
+
+app.post('/Players/update', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const player_id = req.body.update_player_id
+        const location_id = req.body.update_player_location
+        const level = req.body.update_player_level
+        const death_count = req.body.update_player_deaths
+        const query = 'CALL sp_update_player(?, ?, ?, ?);';
+        await db.query(query, [player_id, location_id, level, death_count]);
+        res.redirect('/Players');
+    } catch (error) {
+        console.error("Error ", error);
+        res.status(500).send("Failed");
+    }
+});
+
+app.post('/Player_Weapons/delete', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const inventory_id = req.body.delete_inventory_id
+        const query = 'CALL sp_delete_player_weapons(?);';
+        await db.query(query, [inventory_id]);
+        res.redirect('/Player_Weapons');
+    } catch (error) {
+        console.error("Error deleting inventory item:", error);
+        res.status(500).send("Failed to delete inventory item.");
+    }
+});
+
+app.post('/Player_Weapons/create', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const weapon_id = req.body.create_weapon
+        const player_id = req.body.create_player
+        const query = 'CALL sp_insert_player_weapons(?, ?);';
+        await db.query(query, [weapon_id, player_id]);
+        res.redirect('/Player_Weapons');
+    } catch (error) {
+        console.error("Error ", error);
+        res.status(500).send("Failed");
+    }
+});
 
 
+app.post('/Player_Weapons/update', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const inventory_id = req.body.update_player_weapon
+        const weapon_id = req.body.create_weapon
+        const player_id = req.body.create_player
+        const query = 'CALL sp_update_player_weapons(?, ?, ?);';
+        await db.query(query, [inventory_id, weapon_id, player_id]);
+        res.redirect('/Player_Weapons');
+    } catch (error) {
+        console.error("Error ", error);
+        res.status(500).send("Failed");
+    }
+});
+
+app.post('/Locations/create', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const name = req.body.insert_location_name
+        const region = req.body.insert_location_region
+        const query = 'CALL sp_insert_location(?, ?);';
+        await db.query(query, [name, region]);
+        res.redirect('/Locations');
+    } catch (error) {
+        console.error("Error ", error);
+        res.status(500).send("Failed");
+    }
+});
 
 
 // ########################################
