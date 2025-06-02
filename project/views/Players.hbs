@@ -1,3 +1,11 @@
+
+{{!  
+# Citation for the following page:
+# Date: 05/20/2025
+# Adapted from: Exploration - Web Application Technology
+# Source URL:https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
+
 <h1>Players</h1>
 
 {{! READ table }}
@@ -49,12 +57,15 @@
 </table>
 
 {{! CREATE form }}
+
+
             {{!
             # Citation for the following function: Create a Player form 
             # Date: 05/20/2025
             # Based on: Microsoft Copilot
             # Source URL: https://copilot.microsoft.com
             # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
+
             }}
 <h2>Create a Player</h2>
 <form class='cuForm' id='create_player_form' method="POST" action="/Players/create">
@@ -84,6 +95,14 @@
 </form>
 
 {{! UPDATE form }}
+{{!
+            
+    # Citation for the following function:
+     # Date: 6/02/2025
+     # Adapted from: Exploration Implementing CUD operations 
+     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+    
+            }}
 <h2>Update a Player</h2>
 <form class='cuForm' id='update_person_form' method="POST" action="/Players/update">
     <label for='update_player_id'>Player to Update: </label>

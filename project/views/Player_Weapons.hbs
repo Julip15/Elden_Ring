@@ -34,6 +34,14 @@
 
 
             {{! DELETE form }}
+            {{!
+            
+     # Citation for the following function:
+     # Date: 6/02/2025
+     # Adapted from: Exploration Implementing CUD operations 
+     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+    
+            }}
             <form id='delete_inventory_form' method="POST" action="/Player_Weapons/delete" onsubmit="return confirm('Are you sure you want to delete {{this.[Inventory ID]}}?')">
                 <input type='hidden' name='delete_inventory_id' value="{{this.[Inventory ID]}}" />
                 <input type='hidden' name='delete_player' value='{{this.Player}}' />
@@ -50,6 +58,14 @@
 </table>
 
 {{! CREATE form }}
+{{!
+            
+    # Citation for the following function:
+     # Date: 6/02/2025
+     # Adapted from: Exploration Implementing CUD operations 
+     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+    
+            }}
 <h2>Create a Inventory Item</h2>
 <form class='cuForm' id='create_player_weapon_form' method="POST" action="/Player_Weapons/create">
 
@@ -76,6 +92,14 @@
 </form>
 
 {{! UPDATE form }}
+{{!
+            
+    # Citation for the following function:
+     # Date: 6/02/2025
+     # Adapted from: Exploration Implementing CUD operations 
+     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+    
+            }}
 <h2>Update an Inventory Item</h2>
 <form class='cuForm' id='update_player_weapon_form' method="POST" action="Player_Weapons/update">
     <label for='update_player_weapon'>Inventory Item to Update: </label>
