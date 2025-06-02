@@ -5,7 +5,7 @@
 /*
       # Citation for the following function:
 2      # Date: 05/20/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: FAQ Project Step 4 Draft Version 
+3      # Adapted from: FAQ Project Step 4 Draft Version 
 4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/assignments/10006390
 */
 
@@ -26,9 +26,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_insert_player_weapons;
@@ -50,9 +50,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_delete_player_weapons;
@@ -72,9 +72,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_update_player_weapons;
@@ -97,9 +97,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_insert_player;
@@ -124,9 +124,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_update_player;
@@ -151,9 +151,9 @@ DELIMITER ;
 
 /*
       # Citation for the following function:
-2      # Date: 
-3      # Copied from /OR/ Adapted from /OR/ Based on: 
-4      # Source URL: 
+2     # Date: 6/02/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
 
 DROP PROCEDURE IF EXISTS sp_insert_location;
