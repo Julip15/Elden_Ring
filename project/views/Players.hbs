@@ -23,13 +23,14 @@
             <td>{{this.Class}}</td>
             <td>{{this.Level}}</td>
             <td>{{this.[Death Count]}}</td>
-            <td>{{this.Location}}</td>
+            <td>{{#if this.Location}}{{this.Location}}{{else}}Shrouded by the Fog{{/if}}</td>
+
 
             {{! DELETE form }}
             {{!
             # Citation for the following function:
             # Date: 05/20/2025
-            # Copied from /OR/ Adapted from /OR/ Based on: Microsoft Copilot
+            # Based on: Microsoft Copilot
             # Source URL: https://copilot.microsoft.com
             # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
             }}
@@ -49,9 +50,9 @@
 
 {{! CREATE form }}
             {{!
-            # Citation for the following function:
+            # Citation for the following function: Create a Player form 
             # Date: 05/20/2025
-            # Copied from /OR/ Adapted from /OR/ Based on: Microsoft Copilot
+            # Based on: Microsoft Copilot
             # Source URL: https://copilot.microsoft.com
             # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
             }}

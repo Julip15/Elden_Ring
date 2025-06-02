@@ -1,7 +1,7 @@
 /* 
 # Citation for the following page:
 # Date: 05/20/2025
-# Copied from /OR/ Adapted from /OR/ Based on: Exploration: PL/SQL part 1, SP, View and Function
+# Adapted from: Exploration: PL/SQL part 1, SP, View and Function
 # Source URL:https://canvas.oregonstate.edu/courses/1999601/pages/exploration-pl-slash-sql-part-1-sp-view-and-function?module_item_id=25352958
 # No AI used.
 */
@@ -150,7 +150,7 @@ CREATE TABLE Players(
     level int NOT NULL,
     death_count int DEFAULT 0,
     location_id int,
-    FOREIGN KEY (location_id) REFERENCES Locations(location_id),
+    FOREIGN KEY (location_id) REFERENCES Locations(location_id) ON DELETE SET NULL,
     PRIMARY KEY (player_id)
 );
 
@@ -195,8 +195,8 @@ Create TABLE Enemies (
     is_boss tinyint(1),
     weapon_id int,
     location_id int,
-    FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id),
-    FOREIGN KEY (location_id) REFERENCES Locations(location_id),
+    FOREIGN KEY (weapon_id) REFERENCES Weapons(weapon_id) ON DELETE SET NULL,
+    FOREIGN KEY (location_id) REFERENCES Locations(location_id) ON DELETE SET NULL,
     PRIMARY KEY  (enemy_id)
 );
 
