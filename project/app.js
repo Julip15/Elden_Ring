@@ -40,7 +40,7 @@ app.get('/Players', async function (req, res) {
         // In query1, select all player attributes and join on Locations for location name display
         const query1 = `SELECT Players.player_id AS 'Player ID', Players.name AS 'Name', Players.class AS 'Class',
             Players.level AS 'Level', Players.death_count AS 'Death Count', Locations.name AS 'Location' FROM Players
-            JOIN Locations ON Players.location_id = Locations.location_id;`;
+            LEFT JOIN Locations ON Players.location_id = Locations.location_id;`;
         const query2 = 'SELECT * FROM Locations;';
         const [players] = await db.query(query1);
         const [locations] = await db.query(query2);
@@ -204,11 +204,12 @@ app.post('/home/reload', async function(req, res){
 });
 
 /*
-      # Citation for the following function:
-2      # Date: 05/20/2025
-3      # Copied from /OR/ Adapted from /OR/ Based on: Exploration Implementing CUD operations 
-4      # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+      # Citation for the following function: Delete Player Route Handler
+2     # Date: 05/20/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+
 // Route handler for delete player
 app.post('/Players/delete', async function (req, res) {
     try {
@@ -320,6 +321,145 @@ app.post('/Locations/create', async function (req, res) {
     }
 });
 
+/*
+      # Citation for the following function: Locations Delete Route Handler
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for locations delete
+app.post('/Locations/delete', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const locationId = req.body.delete_location_id;
+        const query = 'CALL sp_delete_location(?);';
+              const result = await db.query(query, [locationId]);
+        console.log("Delete query result:", result)
+        res.redirect('/Locations');
+    } catch (error) {
+        console.error("Error deleting location:", error);
+        res.status(500).send("Failed to delete location.");
+    }
+});
+
+
+/*
+      # Citation for the following function:Player Delete Route Handler
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for Player delete
+app.post('/Players/delete', async function (req, res) {
+    try {
+        let data = req.body;
+        
+        const playerId = req.body.delete_player_id;
+        const query = 'CALL sp_delete_player(?);';
+              const result = await db.query(query, [playerId]);
+        console.log("Delete query result:", result)
+        await db.query(query, [playerId]);
+        res.redirect('/Players');
+    } catch (error) {
+        console.error("Error deleting player:", error);
+        res.status(500).send("Failed to delete player.");
+    }
+});
+
+
+
+/*
+      # Citation for the following function: Weapon Delete Route Handler
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+
+// Route handler for Weapons Delete
+app.post('/Weapons/delete', async function (req, res) {
+    try {
+        const weaponId = req.body.delete_weapon_id;
+        const query = 'CALL sp_delete_weapon(?);';
+            const result = await db.query(query, [weaponId]);
+        console.log("Delete result:", result);
+        res.redirect('/Weapons');
+    } catch (error) {
+        console.error("Error deleting weapon:", error);
+        res.status(500).send("Failed to delete weapon.");
+    }
+});
+
+/*
+      # Citation for the following function: Insert Weapons Route Handler
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+
+// Route handlder for Insert Weapon
+app.post('/Weapons/create', async function (req, res) {
+    try {
+        const name = req.body.create_weapon_name;
+        const damage = req.body.create_weapon_damage;
+        const category_id = req.body.create_weapon_category_id;
+
+        const query = 'CALL sp_insert_weapon(?, ?, ?);';
+        await db.query(query, [name, damage, category_id]);
+        res.redirect('/Weapons');
+    } catch (error) {
+        console.error("Error creating weapon", error);
+        res.status(500).send("Failed to create weapon.");
+    }
+});
+
+
+/*
+      # Citation for the following function: Delete Enemy Route Handler 
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+// Route handler for delete enemy
+
+app.post('/Enemies/delete', async function (req, res) {
+    try {
+        const enemyId = req.body.delete_enemy_id;
+        const query = 'CALL sp_delete_enemy(?);';
+        await db.query(query, [enemyId]);
+        res.redirect('/Enemies');
+    } catch (error) {
+        console.error("Error deleting enemy:", error);
+        res.status(500).send("Failed to delete enemy.");
+    }
+});
+
+
+/*
+      # Citation for the following function: Insert Enemy Route Handler
+2     # Date: 05/31/2025
+3     # Adapted from: Exploration Implementing CUD operations 
+4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+*/
+
+// Route handler for Insert Enemy
+app.post('/Enemies/create', async function (req, res) {
+    try {
+        const name = req.body.create_enemy_name;
+        const health = req.body.create_enemy_health;
+        const is_boss = req.body.create_enemy_is_boss;
+        const weapon_id = req.body.create_enemy_weapon_id || null;
+        const location_id = req.body.create_enemy_location_id || null;
+
+        const query = 'CALL sp_insert_enemy(?, ?, ?, ?, ?);';
+        await db.query(query, [name, health, is_boss, weapon_id, location_id]);
+        res.redirect('/Enemies');
+    } catch (error) {
+        console.error("Error creating enemy:", error);
+        res.status(500).send("Failed to create enemy.");
+    }
+});
+
 
 // ########################################
 // ########## LISTENER
@@ -331,3 +471,12 @@ app.listen(PORT, function () {
             '; press Ctrl-C to terminate.'
     );
 });
+
+
+
+
+
+
+
+        
+

@@ -1,7 +1,7 @@
 {{!
       # Citation for the following :Locations hbs
 2     # Date: 05/6/2025
-3     # Adapted from /OR/ Based on: Exploration Web Application Technology
+3     # Based on: Exploration Web Application Technology
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
 }}
 
@@ -28,15 +28,13 @@
             <td>{{this.[Region]}}</td>
 
             {{! DELETE form }}
-            <form id='delete_location_form'>
-                <input type='hidden' name='delete_location_id' value='{{this.location_id}}' />
-                <input type='hidden' name='delete_location_name' value='{{this.name}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
-            </form>
+            <td>
+                <form id="delete_location_form_{{this.[Location ID]}}" method="POST" action="/Locations/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
+                    <input type="hidden" name="delete_location_id" value="{{this.[Location ID]}}" />
+                    <input type="hidden" name="delete_location_name" value="{{this.Name}}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         {{/each}}
     </tbody>
