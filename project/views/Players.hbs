@@ -15,7 +15,7 @@
     </thead>
 
     <tbody>
-        {{! For each row, print the id, fname, lname, homeworld and age }}
+        {{! For each row, print the column attribute }}
         {{#each players}}
         <tr>
             <td>{{this.[Player ID]}}</td>
@@ -56,7 +56,7 @@
             # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
             }}
 <h2>Create a Player</h2>
-<form class='cuForm' id='create_player_form'>
+<form class='cuForm' id='create_player_form' method="POST" action="/Players/create">
     <label for='create_player_name'>Name: </label>
     <input type='text' name='create_player_name' id='create_player_name' required />
 
@@ -84,7 +84,7 @@
 
 {{! UPDATE form }}
 <h2>Update a Player</h2>
-<form class='cuForm' id='update_person_form'>
+<form class='cuForm' id='update_person_form' method="POST" action="/Players/update">
     <label for='update_player_id'>Player to Update: </label>
     <select name='update_player_id' id='update_player_id' required>
         <option value='' disabled selected>Select a Player</option>
