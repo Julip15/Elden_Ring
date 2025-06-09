@@ -18,17 +18,17 @@
 <nav>
   <div class="nav-links">
     <a href="/">Elden Ring Home</a>
-    <a href="/Players">Players</a>
     <a href="/Player_Weapons">Inventory</a>
-    <a href="/Weapon_Categories">Categories</a>
-    <a href="/locations">Locations</a>
-    <a href="/enemies">Enemies</a>
+    <a href="/Players">Players</a>
     <a href="/weapons">Weapons</a>
+    <a href="/Weapon_Categories">Categories</a>
+    <a href="/enemies">Enemies</a>
+    <a href="/locations">Locations</a>
     <a href="/regions">Regions</a>
   </div>
   
-  <form id='reload_database' method='POST' action="/home/reload">
-    <button class="reset-button" type='submit'>Reset</button>
+  <form id='reload_database' method='POST' action="/home/reload" onsubmit="return confirm('Are you sure you want to reset the database?')">
+    <button class="reset-button" type='submit' >Reset</button>
   </form>
 </nav>
 

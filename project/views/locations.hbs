@@ -28,6 +28,13 @@
             <td>{{this.[Region]}}</td>
 
             {{! DELETE form }}
+            {{!
+                # Citation for the following function:
+                # Date: 6/02/2025
+                # Adapted from: Exploration Implementing CUD operations 
+                # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+            }}
             <td>
                 <form id="delete_location_form_{{this.[Location ID]}}" method="POST" action="/Locations/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                     <input type="hidden" name="delete_location_id" value="{{this.[Location ID]}}" />
@@ -43,7 +50,7 @@
 {{! CREATE form }}
 {{!
             
-    # Citation for the following function:
+     # Citation for the following function:
      # Date: 6/02/2025
      # Adapted from: Exploration Implementing CUD operations 
      # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
@@ -65,7 +72,3 @@
 
     <input type='submit' />
 </form>
-
-
-
-

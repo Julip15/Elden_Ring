@@ -34,6 +34,13 @@
             <td>{{this.Location}}</td>
 
             {{! DELETE form }}
+            {{!
+                # Citation for the following function:
+                # Date: 6/02/2025
+                # Adapted from: Exploration Implementing CUD operations 
+                # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+            }}
               <td>
                 <form method="POST" action="/Enemies/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                     <input type="hidden" name="delete_enemy_id" value="{{this.[Enemy ID]}}" />
@@ -44,7 +51,14 @@
         {{/each}}
     </tbody>
 </table>
+            {{! CREATE form }}
+            {{!
+                # Citation for the following function:
+                # Date: 6/02/2025
+                # Adapted from: Exploration Implementing CUD operations 
+                # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 
+            }}
 <h2>Create an Enemy</h2>
 
 <form class='cuForm' id='create_enemy_form' method="POST" action="/Enemies/create">

@@ -95,8 +95,15 @@ nav a:hover {
   text-align: center;
   line-height: 1.6;
   font-size: 1rem;
-  color: var(--text);
-  opacity: 0.85;
+  color: White;
+  opacity: 1;
+  text-shadow: 4px 4px 8px rgba(0,0,0,1);
+}
+#homep {
+  font-size: 1.5rem;
+  color: White;
+  opacity: 1;
+  text-shadow: 4px 4px 8px rgba(0,0,0,1);
 }
 
 
@@ -144,7 +151,10 @@ footer {
   padding: 1rem 0;
   color: var(--accent);
   font-size: 0.85rem;
-  opacity: 0.6;
+  opacity: 1;
+  position: absolute;
+  bottom: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,1);
 }
 
 table {
@@ -258,4 +268,17 @@ input[type="submit"], .btn-delete {
   opacity: 0.75;
 }
 
+/* background image for logo */
+/* background image made with Ai sora.chatgpt.com */
+#home{
+    background-image: url(logo.jpg);
+    background-size: fill;  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
+#homeh1 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,1);
+  font-size: 5rem;
+}
