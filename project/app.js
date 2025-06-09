@@ -250,6 +250,7 @@ app.get('/regions', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Will reset the database to the stored procedure data. 
 app.post('/home/reload', async function(req, res){
     try {
         const reloaddb = `CALL sp_load_eldenringdb();`;
@@ -292,9 +293,10 @@ app.post('/Players/delete', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for creating a player.
 app.post('/Players/create', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const name = req.body.create_player_name
         const class_player = req.body.create_player_class
@@ -316,9 +318,10 @@ app.post('/Players/create', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for updating a player.
 app.post('/Players/update', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const player_id = req.body.update_player_id
         const location_id = req.body.update_player_location
@@ -339,9 +342,10 @@ app.post('/Players/update', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for deleting an inventory item. 
 app.post('/Player_Weapons/delete', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const inventory_id = req.body.delete_inventory_id
         const query = 'CALL sp_delete_player_weapons(?);';
@@ -359,9 +363,10 @@ app.post('/Player_Weapons/delete', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for creating an inventory item. 
 app.post('/Player_Weapons/create', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const weapon_id = req.body.create_weapon
         const player_id = req.body.create_player
@@ -380,10 +385,11 @@ app.post('/Player_Weapons/create', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for updating an inventory item (aka Player_weapons item).
 app.post('/Player_Weapons/update', async function (req, res) {
     try {
-        let data = req.body;
-        
+        let data = req.body; // data from the webpage
+         
         const inventory_id = req.body.update_player_weapon
         const weapon_id = req.body.create_weapon
         const player_id = req.body.create_player
@@ -401,9 +407,10 @@ app.post('/Player_Weapons/update', async function (req, res) {
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 */
+// Route handler for creating a location.
 app.post('/Locations/create', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const name = req.body.insert_location_name
         const region = req.body.insert_location_region
@@ -425,7 +432,7 @@ app.post('/Locations/create', async function (req, res) {
 // Route handler for locations delete
 app.post('/Locations/delete', async function (req, res) {
     try {
-        let data = req.body;
+        let data = req.body; // data from the webpage
         
         const locationId = req.body.delete_location_id;
         const query = 'CALL sp_delete_location(?);';
@@ -439,29 +446,6 @@ app.post('/Locations/delete', async function (req, res) {
 });
 
 
-/*
-      # Citation for the following function:Player Delete Route Handler
-2     # Date: 05/31/2025
-3     # Adapted from: Exploration Implementing CUD operations 
-4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
-*/
-// Route handler for Player delete
-app.post('/Players/delete', async function (req, res) {
-    try {
-        let data = req.body;
-        
-        const playerId = req.body.delete_player_id;
-        const query = 'CALL sp_delete_player(?);';
-              const result = await db.query(query, [playerId]);
-        console.log("Delete query result:", result)
-        await db.query(query, [playerId]);
-        res.redirect('/Players');
-    } catch (error) {
-        console.error("Error deleting player:", error);
-        res.status(500).send("Failed to delete player.");
-    }
-});
-
 
 
 /*
@@ -474,7 +458,7 @@ app.post('/Players/delete', async function (req, res) {
 // Route handler for Weapons Delete
 app.post('/Weapons/delete', async function (req, res) {
     try {
-        const weaponId = req.body.delete_weapon_id;
+        const weaponId = req.body.delete_weapon_id; 
         const query = 'CALL sp_delete_weapon(?);';
             const result = await db.query(query, [weaponId]);
         console.log("Delete result:", result);
@@ -574,4 +558,3 @@ app.listen(PORT, function () {
 
 
         
-
