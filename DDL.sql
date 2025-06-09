@@ -1,5 +1,5 @@
 /* 
-# Citation for the following page:
+# Citation for the following page: DDl.sql
 # Date: 05/20/2025
 # Adapted from: Exploration: PL/SQL part 1, SP, View and Function
 # Source URL:https://canvas.oregonstate.edu/courses/1999601/pages/exploration-pl-slash-sql-part-1-sp-view-and-function?module_item_id=25352958

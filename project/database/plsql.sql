@@ -23,7 +23,7 @@ DELIMITER ;
 
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Insert Player Weapons
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
 4     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
@@ -47,7 +47,7 @@ END //
 DELIMITER ;
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Delete Player Weapons
 
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
@@ -71,7 +71,7 @@ END //
 DELIMITER ;
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Update Player Weapons
 
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
@@ -98,7 +98,7 @@ END //
 DELIMITER ;
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Insert Player
 
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
@@ -127,7 +127,7 @@ END //
 DELIMITER ;
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Update Player
 
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
@@ -156,7 +156,7 @@ END //
 DELIMITER ;
 
 /*
-      # Citation for the following function:
+      # Citation for the following function: Insert location
 
 2     # Date: 6/02/2025
 3     # Adapted from: Exploration Implementing CUD operations 
