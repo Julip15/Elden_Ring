@@ -1,7 +1,7 @@
 /*
 # Citation for the following page:
 # Date: 05/20/2025
-# Copied from /OR/ Adapted from /OR/ Based on: Exploration - Web Application Technology, npmjs
+# Based on: Exploration - Web Application Technology, npmjs
 # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
 https://www.npmjs.com/package/dotenv 
              
@@ -17,7 +17,7 @@ let mysql = require('mysql2')
 const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit   : 10,
-    host              : 'classmysql.engr.oregonstate.edu',
+    host              : process.env.DB_HOST, //for security
     user              : process.env.DB_USER,
     password          : process.env.DB_PASSWORD,
     database          : process.env.DB_NAME
