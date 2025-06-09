@@ -46,7 +46,7 @@
                 <input type='hidden' name='delete_player_id' value='{{this.[Player ID]}}' />
                 <input type='hidden' name='delete_name' value='{{this.Name}}' />
                 <td>
-                    <button type='submit'>
+                    <button class="btn-delete" type='submit'>
                         Delete
                     </button>
                 </td>
@@ -60,26 +60,25 @@
 
 
             {{!
-            # Citation for the following function: Create a Player form 
-            # Date: 05/20/2025
-            # Based on: Microsoft Copilot
-            # Source URL: https://copilot.microsoft.com
-            # Prompt Modify current delete form so that delete button is functional and current formatting is retained. Pasted current form     
-
+    # Citation for the following function:
+     # Date: 6/02/2025
+     # Adapted from: Exploration Implementing CUD operations 
+     # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+    
             }}
 <h2>Create a Player</h2>
 <form class='cuForm' id='create_player_form' method="POST" action="/Players/create">
     <label for='create_player_name'>Name: </label>
-    <input type='text' name='create_player_name' id='create_player_name' required />
+    <input type='text' placeholder="Enter Player Name" name='create_player_name' id='create_player_name' required />
 
     <label for='create_player_class'>Class: </label>
-    <input type='text' name='create_player_class' id='create_player_class' />
+    <input type='text' placeholder="Enter Player Class" name='create_player_class' id='create_player_class' />
 
     <label for='create_player_level'>Level: </label>
-    <input type='number' name='create_player_level' id='create_player_level' />
+    <input type='number'placeholder="Enter Player Level" name='create_player_level' id='create_player_level' />
 
     <label for='create_player_deaths'>Death Count: </label>
-    <input type='number' name='create_player_deaths' id='create_player_deaths' />    
+    <input type='number' placeholder="Enter Death Count" name='create_player_deaths' id='create_player_deaths' />    
 
     <label for='create_person_location'>Location: </label>
     <select name='create_person_location' id='create_person_location'>
@@ -129,10 +128,10 @@
     </select>
 
     <label for='update_player_level'>Level: </label>
-    <input type='number' name='update_player_level' id='update_player_level' min='0' />
+    <input type='number' placeholder="Update Player Level" name='update_player_level' id='update_player_level' min='0' />
 
     <label for='update_player_deaths'>Deaths: </label>
-    <input type='number' name='update_player_deaths' id='update_player_deaths' min='0' />
+    <input type='number' placeholder="Update Death Count" name='update_player_deaths' id='update_player_deaths' min='0' />
 
     <input type='submit' />
 </form>
