@@ -34,24 +34,39 @@
             <td>{{this.Location}}</td>
 
             {{! DELETE form }}
+            {{!
+                # Citation for the following function:
+                # Date: 6/02/2025
+                # Adapted from: Exploration Implementing CUD operations 
+                # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+            }}
               <td>
                 <form method="POST" action="/Enemies/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                     <input type="hidden" name="delete_enemy_id" value="{{this.[Enemy ID]}}" />
-                    <button type="submit">Delete</button>
+                    <button class="btn-delete" type="submit">Delete</button>
                 </form>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+            {{! CREATE form }}
+            {{!
+                # Citation for the following function:
+                # Date: 6/02/2025
+                # Adapted from: Exploration Implementing CUD operations 
+                # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 
+            }}
 <h2>Create an Enemy</h2>
+
 <form class='cuForm' id='create_enemy_form' method="POST" action="/Enemies/create">
     <label for='create_enemy_name'>Enemy Name: </label>
-    <input type='text' name='create_enemy_name' id='create_enemy_name' required />
+    <input type='text' placeholder="Enter Enemy Name" name='create_enemy_name' id='create_enemy_name' required />
 
     <label for='create_enemy_health'>Health: </label>
-    <input type='number' name='create_enemy_health' id='create_enemy_health' min="0" />
+    <input type='number'placeholder="Enter Enemy Health" name='create_enemy_health' id='create_enemy_health' min="0" />
 
     <label for='create_enemy_is_boss'>Is Boss: </label>
     <select name='create_enemy_is_boss' id='create_enemy_is_boss' required>
