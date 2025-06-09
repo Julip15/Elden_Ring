@@ -6,33 +6,31 @@
       https://www.w3schools.com/html/default.asp
 }}
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>CS340 - Elden Ring</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        Navigation: 
-        <a href="/">Elden Ring Home</a>
-        <a href="/Players">Players</a>
-        <a href="/Player_Weapons">Inventory</a>
-        <a href="/Weapon_Categories">Categories</a>
-        <a href="/locations">Locations</a>
-        <a href="/enemies">Enemies</a>
-        <a href="/weapons">Weapons</a>
-        <a href="/regions">Regions</a>
-        {{! Delete button  }}
-        <form id='reload_database' method='POST' action="/home/reload">
-                    <button type='submit'>
-                        Reset
-                    </button>
-            </form>
-    </nav>
+<nav>
+  <div class="nav-links">
+    <a href="/">Elden Ring Home</a>
+    <a href="/Players">Players</a>
+    <a href="/Player_Weapons">Inventory</a>
+    <a href="/Weapon_Categories">Categories</a>
+    <a href="/locations">Locations</a>
+    <a href="/enemies">Enemies</a>
+    <a href="/weapons">Weapons</a>
+    <a href="/regions">Regions</a>
+  </div>
+  
+  <form id='reload_database' method='POST' action="/home/reload">
+    <button class="reset-button" type='submit'>Reset</button>
+  </form>
+</nav>
 
     {{{body}}}
 

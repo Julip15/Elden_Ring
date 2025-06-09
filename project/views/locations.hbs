@@ -32,7 +32,7 @@
                 <form id="delete_location_form_{{this.[Location ID]}}" method="POST" action="/Locations/delete" onsubmit="return confirm('Are you sure you want to delete {{this.Name}}?')">
                     <input type="hidden" name="delete_location_id" value="{{this.[Location ID]}}" />
                     <input type="hidden" name="delete_location_name" value="{{this.Name}}" />
-                    <button type="submit">Delete</button>
+                    <button class="btn-delete" type="submit">Delete</button>
                 </form>
             </td>
         </tr>
@@ -52,7 +52,8 @@
 <h2>Insert a Location</h2>
 <form class='cuForm' id='insert_location_form' method="POST" action="/Locations/create">
     <label for='insert_location_name'> Name: </label>
-    <input type='text' name='insert_location_name' id='insert_location_name' required />
+        <input type='text' placeholder="Enter Location Name" name='insert_location_name' id='insert_location_name' required />
+
 
     <label for='insert_location_region'>Region: </label>
     <select name='insert_location_region' id='insert_location_region' required>

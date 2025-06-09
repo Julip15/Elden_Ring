@@ -1,20 +1,261 @@
-h1, h2 { margin-left: 16px;}
-table {border-collapse: collapse;margin-left: 32px;}
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-}
-th {background-color: #f2f2f2;}
-tr:nth-child(even) {background-color: #f9f9f9;}
-.cuForm { margin-left: 32px;}
-input, select { margin-bottom: 4px;margin-right: 12px;}
-nav {background-color: #cecece;padding: 16px;}
-a {margin-left: 16px;}
-.homepageDescription {margin-left: 32px;}
+/* {{!
+# Citation for the following page: Style.css
+# Date: 06/08/2025
+# Adapted from feedback from AI + MDN CSS Resources
+# AI Prompt: Analyze the following and provide styling feedback based on: industry standards for user experience combined with theme of database. Provide urls to justify all recommendations.
+# Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties
+# https://developer.mozilla.org/en-US/docs/Web/CSS/transition
+# https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration
+# https://chatgpt.com/
+# 
+             
+}} */
 
-#reload_database {
-    position: absolute;
-    right: 20px;
-    top: 25px;
+
+:root {
+  --bg: #1A1A1A;
+  --surface: #2A2A2A;
+  --text: #F0E6D2;
+  --accent: #C9AA71;
+  --danger: #872f2c;
+  --success: #5CB85C;
+  --border: #444;
+  --nav: #2E2E2E;
+  --link: #FFD784;
 }
+
+/* nav bar */
+
+nav {
+  background-color: var(--nav);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--accent);
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto 2rem auto;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+/*  nav links  */
+nav a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 1rem;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links {
+   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+nav a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* Reset Button */
+.reset-button {
+  background-color: #C9AA71 ;
+  color: #0d0d0d;
+  border: 2.5px solid var(--border);
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+  letter-spacing: 0.5px;
+    position: absolute;
+  right: 2rem;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.reset-button:hover {
+  background-color: var(--danger);
+  color: #C9AA71;
+  transform: scale(1.05);
+}
+.homepageDescription {
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+
+body {
+  font-family: 'Cinzel', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  margin: 2rem 0 1rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: var(--accent);
+}
+  
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+p {
+  max-width: 75ch;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+  text-align: center;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:nth-child(even) {
+  background-color: var(--surface);
+}
+
+tr:hover {
+  background-color: #333;
+}
+
+th {
+  background-color: #333;
+  color: var(--accent);
+}
+
+button, .btn {
+  padding: 0.25rem 0.65rem;
+  margin: 0.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-add {
+  background-color: var(--accent);
+  color: #000;
+}
+
+.btn-edit {
+  background-color: #A48F5E;
+  color: #000;
+}
+
+.btn-delete {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+
+select, input[type="text"], input[type="number"] {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 1rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 1000;
+}
+
+
+/* Set max-width on content so it doesn't stretch full screen */
+table, form, .cuForm {
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
+}
+
+/* Optional: add margin under table and form areas */
+table {
+  margin-bottom: 2rem;
+}
+
+/* form buttons */
+input[type="submit"], .btn-delete {
+  background-color: var(--accent);
+  color: #1A1A1A;
+  padding: 0.35rem 0.85rem;
+  margin: 0.2rem 0;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* table placeholder text */
+::placeholder {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+
