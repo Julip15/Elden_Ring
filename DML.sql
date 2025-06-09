@@ -35,7 +35,8 @@ WHERE player_id =  player_idinput;
 SELECT  player_weapon_id AS 'Inventory ID', Players.name AS 'Player', Weapons.name AS 'Weapon'
 FROM Player_Weapons
 JOIN Players On Players.player_id = Player_Weapons.player_id
-JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id;
+JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id
+ORDER BY player_weapon_id;
 
 /* add new Player_Weapon */
 INSERT INTO Player_Weapons (player_id, weapon_id)
