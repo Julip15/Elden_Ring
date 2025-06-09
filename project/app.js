@@ -86,7 +86,8 @@ app.get('/Player_Weapons', async function (req, res) {
         const query1 = `SELECT  player_weapon_id AS 'Inventory ID', Players.name AS 'Player', Weapons.name AS 'Weapon'
                         FROM Player_Weapons
                         JOIN Players On Players.player_id = Player_Weapons.player_id
-                        JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id;`;
+                        JOIN Weapons ON Weapons.weapon_id = Player_Weapons.weapon_id
+                        ORDER BY player_weapon_id;`;
         const query2 = 'SELECT * FROM Players;';
         const query3 = 'SELECT * FROM Weapons;';
         const [inventory] = await db.query(query1);
